@@ -34,7 +34,7 @@ const App = () => {
         <div className="nb-wrapper">
           <Link to='/' className="nb-container">
             <SingleHex fillColor='0xff3333' borderColor='0xf52929' size={pixiSizeScalar(30)} />
-            <h1>Hexago</h1>
+            <h1>HexHiv</h1>
           </Link>
         </div>
         <div>
