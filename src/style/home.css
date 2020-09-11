@@ -1,0 +1,36 @@
+.h-container {
+    display: inline;
+}
+.link-btn {
+    width: 100%;
+    border-width: 2px;
+    margin: 20px 0;
+}
+.link-btn-p:hover {
+    background-color: transparent;
+    color: #007bff;
+    text-decoration: underline;
+}
+.link-btn-w:hover {
+    background-color: transparent;
+    color: #ffc107;
+    text-decoration: underline;
+}
+.link-btn-s:hover {
+    background-color: transparent;
+    color: #6c757d;
+    text-decoration: underline;
+}
+.link-btn-redd {
+    border-color: #ff5722;
+    color: #ff5722
+}
+.link-btn-redd:hover {
+    background-color: transparent;
+    color: #ff5722;
+    border-color: #ff5722;
+    text-decoration: underline;
+}
+.reddit-icon {
+  height: 1.7rem;
+}

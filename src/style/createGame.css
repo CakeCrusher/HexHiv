@@ -1,0 +1,13 @@
+.cg-container {
+    width: 100%;
+    display: grid;
+    justify-content: center;
+}
+.rm-container {
+    opacity: 0.7;
+    grid-column: 1/3;
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    white-space: pre-wrap;
+}

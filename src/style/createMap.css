@@ -1,0 +1,8 @@
+.cm-container {
+    margin: auto;
+}
+.stage-wrapper {
+    grid-column: 1/3;
+    display: grid;
+    justify-content: center;
+}
