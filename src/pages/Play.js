@@ -142,6 +142,8 @@ const Play = (props) => {
                             <CopyToClipboard text={window.location.href}>
                                 <Button className='primary-btn' variant="primary">copy link to clipboard</Button>
                             </CopyToClipboard>
+                            <div style={{height: '20px'}} />
+                            <p><strong>Tip</strong>: click on the stats bar for more information.</p>
                         </div>
                     </div>
                 )
@@ -239,6 +241,8 @@ Specials
                 <div className='p-container'>
                     <h2 className='page-title'>Play</h2>
                     <Loading text={`Searching for games: `} />
+                    <div style={{height: '20px'}} />
+                    <p><strong>Tip</strong>: click on the stats bar for more information.</p>
                 </div>
             </div>
         )
