@@ -81,7 +81,7 @@ export const adjacentToAlly = (userId, coor, tiles, distance) => {
         adjacentTiles = newAdjacentTiles
     }
     for (const tile of adjacentTiles) {
-        if (tile && doesUserOwn(userId, tile.ownership)) {
+        if (tile && doesUserOwn(userId, tile.ownership) === true) {
             return true
         }
     }
@@ -165,7 +165,7 @@ export const leaderboard = (players, tiles) => {
         thisPlayer.points = 0
         tiles.forEach(t => {
             const owns = doesUserOwn(p.id, t.ownership)
-            if (owns === 'share') {
+            if (owns === 'shared') {
                 thisPlayer.points += 0.5
             } else if (owns) {
                 thisPlayer.points++
