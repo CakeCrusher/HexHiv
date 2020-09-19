@@ -7,6 +7,7 @@ export default PixiComponent('Rectangle', {
   },
   applyProps: (instance, oldProps, newProps) => {
     const { fill, x, y, width, height, doOnClick } = newProps
+    instance.buttonMode = true
     instance.clear()
     instance.beginFill(fill)
     instance.drawRect(x, y, width, height)
