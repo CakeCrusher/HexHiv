@@ -21,7 +21,7 @@ const Play = (props) => {
     const [moves, setMoves] = useState([])
     const [turnDone, setTurnDone] = useState(false)
     const [sessionDone, setSessionDone] = useState(false)
-    const [showLeaderboard, setShowLeaderboard] = useState(false)
+    const [showLeaderboard, setShowLeaderboard] = useState(true)
     const [mouseDown, setMouseDown] = useState(false)
     const [clickPosition, setClickPosition] = useState([pixiSizeScalar(90), pixiSizeScalar(165)])
     const [oldMapPos, setOldMapPos] = useState([pixiSizeScalar(90), pixiSizeScalar(165)])
@@ -138,7 +138,7 @@ const Play = (props) => {
                     <div className='page-content'>
                         <div className='p-container'>
                             <Loading color={color.fields.value} text={`Waiting for ${session.playerAmount - session.players.length} players: `} />
-                            <h5>Invite your friends by by sharing this link</h5>
+                            <h5>Invite your friends by sharing this link</h5>
                             <CopyToClipboard text={window.location.href}>
                                 <Button className='primary-btn' variant="primary">copy link to clipboard</Button>
                             </CopyToClipboard>
