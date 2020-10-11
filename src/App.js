@@ -17,8 +17,8 @@ import './style/App.css'
 import SingleHex from './components/SingleHex'
 
 import {pixiSizeScalar} from './utils'
-let socket = socketIOClient('http://localhost:4000')
-// let socket = socketIOClient('https://gohexago.herokuapp.com/')
+// let socket = socketIOClient('http://localhost:4000')
+let socket = socketIOClient('https://gohexago.herokuapp.com/')
 
 const App = () => {
   const [currentPlayers, setCurrentPlayers] = useState(0)
