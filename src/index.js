@@ -6,8 +6,8 @@ import * as serviceWorker from './serviceWorker';
 import {ApolloProvider, ApolloClient, InMemoryCache} from '@apollo/client'
 
 export const client = new ApolloClient({
-  // uri: 'http://localhost:4000/graphql',
-  uri: 'https://gohexago.herokuapp.com/graphql',
+  uri: 'http://localhost:4000/graphql',
+  // uri: 'https://gohexago.herokuapp.com/graphql',
   cache: new InMemoryCache()
 })
 

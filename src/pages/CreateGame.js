@@ -13,6 +13,7 @@ import '../style/createGame.css'
 const CreateGame = () => {
     const [publicGame, setPublicGame] = useState(true)
     const [timer, setTimer] = useState(false)
+    const [spectators, setSpectators] = useState(true)
     const [specials, setSpecials] = useState(true)
     const playerAmount = useField('number')
     const turns = useField('number')
@@ -33,6 +34,7 @@ const CreateGame = () => {
                 id: sessionId,
                 public: publicGame,
                 timer,
+                spectators,
                 specials,
                 playerAmount: playerAmount.fields.value,
                 turns: turns.fields.value,
@@ -63,15 +65,16 @@ const CreateGame = () => {
         }
         return maps
     } 
-    const rmHTML = () => {
-        const pieces = []
-        mapReccomendations().forEach(m => pieces.push(<strong key={m}>{m}, </strong>))
-        return (
-            <React.Fragment>
-                <div>reccomended maps: </div>
-                {pieces}
-            </React.Fragment>
-        )
+    const reccomendedMaps = () => {
+        let maps = mapReccomendations()
+        maps = maps.map(m => <Button className='submit-btn' onClick={() => map.assignValue(m)} variant="secondary">{m}</Button>)
+        return maps
+    }
+
+    const myMaps = () => {
+        let maps = window.localStorage.getItem('maps') ? JSON.parse(window.localStorage.getItem('maps')) : []
+        maps = maps.map(m => <Button className='submit-btn' onClick={() => map.assignValue(m)} variant="dark">{m}</Button>)
+        return maps
     }
 
     return (
@@ -82,15 +85,25 @@ const CreateGame = () => {
                 <input className='radio-input' id='publicGame' type='checkbox' checked={publicGame} onChange={() => setPublicGame(!publicGame)} />
                 <label htmlFor='timer'>timer:</label>
                 <input className='radio-input' id='timer' type='checkbox' checked={timer} onChange={() => setTimer(!timer)} />
+                <label htmlFor='spectators'>spectators:</label>
+                <input className='radio-input' id='publicGame' type='checkbox' checked={spectators} onChange={() => setSpectators(!spectators)} />
                 <label htmlFor='specials'>specials:</label>
                 <input className='radio-input' id='specials' type='checkbox' checked={specials} onChange={() => setSpecials(!specials)} />
                 <label htmlFor='playerAmout'>player amout:</label>
                 <input id='playerAmout' {...playerAmount.fields}/>
                 <label htmlFor='turns'>turns:</label>
                 <input id='turns' {...turns.fields}/>
-                <label htmlFor='map'>map:</label>
-                <input id='map' {...map.fields} />
-                <div className='rm-container'>{rmHTML()}</div>
+                <label style={{alignSelf: 'start'}} htmlFor='map'>map:</label>
+                <div className='map_input-container'>
+                    <input id='map' {...map.fields} />
+                    <div className="my_maps-wrapper">
+                        <div className="my_maps-container">
+                            {myMaps()}
+                            {reccomendedMaps()}
+                        </div>
+                    </div>
+                </div>
+                {/* <div className='rm-container'>{rmHTML()}</div> */}
                 <Button className='submit-btn' type='submit' variant="success">create game</Button>
             </form>
         </div>

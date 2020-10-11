@@ -4,11 +4,11 @@ import {Link} from 'react-router-dom'
 
 import '../style/home.css'
 
-const Home = () => {
-    
-
+const Home = (props) => {
     return (
         <div className='h-container'>
+            <h4 className='players-online'>{props.currentPlayers} players online</h4>
+
             <Link to='/play'>
                 <Button className='link-btn link-btn-p' variant="outline-primary"><h4>Quickplay</h4></Button>
             </Link>

@@ -7,14 +7,26 @@ export default PixiComponent('TextInHex', {
         return new PIXI.Text('',{fontFamily : 'Arial', fontSize: pixiSizeScalar(24), align : 'center'});
     },
     applyProps: (instance, oldProps, newProps) => {
-        const {fill, text, x, y} = newProps
-        if (fill) {
-            instance.style.fill = fill
-        } else {
-            instance.style.fill = '0x282828'
+        const {fogged, fill, text, x, y, upper, lower} = newProps
+        if (fogged) {
+            instance.style.fill = '0xffffff'
         }
+        else if (fill) {
+            instance.style.fill = fill
+        } else { 
+            instance.style.fill = ['0x282828', '0xffe642']
+        }
+
         instance.text = text
-        instance.position.set(x - instance.width / 2, y - instance.height / 2)
+        let insHeight = y - instance.height / 2
+        if (upper) {
+            insHeight = insHeight - instance.height / 2
+        }
+        if (lower) {
+            insHeight = insHeight + instance.height / 2
+        }
+        instance.position.set(x - instance.width / 2, insHeight)
+        // instance.updateText()
     }
 
 })

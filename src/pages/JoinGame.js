@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {Stage} from '@inlet/react-pixi'
 
 import {socket} from '../App'
-import {Map, useField, adjacentToAlly, coorEquals} from '../utils'
+import {Map, useField, adjacentToAlly, coorEquals, leaderboard} from '../utils'
 import Leaderboard from '../components/Leaderboard'
 
 const JoinGame = () => {
@@ -24,10 +24,10 @@ const JoinGame = () => {
         setTurnDone(false)
     })
     // when game is over
-    if (session && session.game && !sessionDone && session.turns < session.game.turn) {
+    const playersWithPoints = leaderboard(session.players, session.game.tiles)
+    if ((session && session.game && !sessionDone && session.turns < session.game.turn) || playersWithPoints.filter(p => p.points >= 1).length === 1) {
         setSessionDone(true)
-        console.log(`Session with id: '${session.id}' finished.`)
-        alert('Game finished!\nClick on leaderboard for final standings.')
+        alert('Game finished!\nCheck on leaderboard for final standings.')
     }
     // when user joins game
     const joinGame = (e) => {
@@ -113,7 +113,6 @@ const JoinGame = () => {
                 }
                 let specialTypes = session.game.specials.filter(s => s.coor && s.usage > 0).map(s => s.type)
                 specialTypes = specialTypes.filter((s, pos) => specialTypes.indexOf(s) === pos)
-                console.log(specialTypes)
                 return specialTypes.map(s => <li><strong>{s}: </strong>{dictionary[s]}</li>)
             }
             return (

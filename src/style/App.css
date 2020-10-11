@@ -25,6 +25,19 @@ h3 {
   cursor: pointer;
   width: auto;
 }
+.testWrapper {
+  background-color: #f52929;
+  border-radius: 3px;
+}
+.testWrapper:hover {
+  opacity: 0.8;
+  text-decoration: none;
+}
+.test, .test:hover {
+  color: white;
+  text-align: center;
+  opacity: 0.9;
+}
 .page-content {
   width: 50%;
   margin: auto;

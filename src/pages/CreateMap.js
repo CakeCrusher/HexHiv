@@ -92,12 +92,20 @@ const CreateMap = () => {
         grid: map
       }
     })
-    if (response) {
-      alert(`Map saved as "${name.fields.value}"`)
+    if (response && response.data.makeMap.name) {
+      alert(`Map saved as "${response.data.makeMap.name}"`)
+
+      // localStorage
+      let allMaps = window.localStorage.getItem('maps') ? JSON.parse(window.localStorage.getItem('maps')) : []
+      allMaps.push(response.data.makeMap.name)
+      window.localStorage.setItem('maps', JSON.stringify(allMaps))
+
       setDimensions([7,7])
       name.reset()
       setMap(Array(7 * 7).fill(false))
-    }
+    } else {
+      alert('name is already taken please chose a new one')
+    } 
   }
 
   // const sizes = ['small', 'medium', 'large']

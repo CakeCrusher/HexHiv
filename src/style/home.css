@@ -1,6 +1,12 @@
 .h-container {
     display: inline;
 }
+.players-online {
+    text-align: end;
+    color: #007bff;
+    opacity: 0.5;
+    
+}
 .link-btn {
     width: 100%;
     border-width: 2px;

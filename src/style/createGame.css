@@ -11,3 +11,17 @@
     flex-wrap: wrap;
     white-space: pre-wrap;
 }
+.map_input-container {
+    width: 100%;
+}
+.my_maps-wrapper {
+    width: fit-content;
+}
+.my_maps-container {
+    width: 100%;
+    margin: 10px 0;
+    display: flex;
+    column-gap: 10px;
+    row-gap: 10px;
+    flex-wrap: wrap;
+}

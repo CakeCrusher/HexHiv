@@ -40,8 +40,12 @@ export default PixiComponent('Hexagon', {
             ins.endFill()
             return ins
         }
-        const {fill, borderColor, x, y, size, triggerOnClick, draggedOver, dragging, draggedOverState, triggerOnDrag, startInvisible} = newProps
-        generateHexagon(instance, x, y, size, fill, borderColor)
+        const {fogged, fill, borderColor, x, y, size, triggerOnClick, draggedOver, dragging, draggedOverState, triggerOnDrag, startInvisible} = newProps
+        if (fogged) {
+            generateHexagon(instance, x, y, size, '0x282828', '0xffffff')
+        } else {
+            generateHexagon(instance, x, y, size, fill, borderColor)
+        }
         if (startInvisible) {
             instance.visible = false
         }
