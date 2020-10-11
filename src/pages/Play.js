@@ -70,22 +70,26 @@ const Play = (props) => {
         // when user joins game
         const joinGame = (e) => {
             e.preventDefault()
-            let currentColor = color.fields.value
-            if (!color.fields.value) {
-                currentColor = generateColor('#')
-                color.assignValue(currentColor)
+            if (username.fields.value.includes('(bot)')) {
+                alert('username may not include "(bot)"')
+            } else {
+                let currentColor = color.fields.value
+                if (!color.fields.value) {
+                    currentColor = generateColor('#')
+                    color.assignValue(currentColor)
+                }
+                if (username.fields.value && username.fields.value !== window.localStorage.getItem('username')) {
+                    window.localStorage.setItem('username', username.fields.value)
+                }
+                if (!username.fields.value) {
+                    username.assignValue(`unnamed${randNum(0,99)}`)
+                }
+                socket.emit('joinSession', {
+                    gameId: props.id,
+                    color: currentColor,
+                    username: username.fields.value
+                })
             }
-            if (username.fields.value && username.fields.value !== window.localStorage.getItem('username')) {
-                window.localStorage.setItem('username', username.fields.value)
-            }
-            if (!username.fields.value) {
-                username.assignValue(`unnamed${randNum(0,99)}`)
-            }
-            socket.emit('joinSession', {
-                gameId: props.id,
-                color: currentColor,
-                username: username.fields.value
-            })
         }
         // tileClick
         // first route the base graphics
@@ -177,14 +181,17 @@ const Play = (props) => {
                         setTimer(Math.floor((new Date().getTime() - session.date) / 1000))
                     }
                 }, 1000)
+                const loadingInfo = session.public ? (
+                    <div style={{opacity: 0.7}}>
+                        <h5>Estimated wait time: {waitTime * (session.playerAmount - 1)} seconds</h5>
+                        <h5>Time elapsed: {timer} seconds</h5>
+                    </div>
+                ) : null
                 return (
                     <div className='page-content'>
                         <div className='p-container'>
                             <Loading color={color.fields.value} text={`Waiting for ${session.playerAmount - session.players.length} players: `} />
-                            <div style={{opacity: 0.7}}>
-                                <h5>Estimated wait time: {waitTime * (session.playerAmount - 1)} seconds</h5>
-                                <h5>Time elapsed: {timer} seconds</h5>
-                            </div>
+                            {loadingInfo}
                             <div style={{height: '20px'}} />
                             <h5>Invite your friends by sharing this link</h5>
                             <CopyToClipboard text={window.location.href}>
