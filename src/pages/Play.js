@@ -218,12 +218,12 @@ const Play = (props) => {
                 let mySpecials
                 let hasXray
 
-                if (thisPlayer) {
+                // if (thisPlayer) {
                     myColor = session.players.find(p => p.id === socket.id).color
                     movesRemaining = turnDone ? 0 : session.game.turn === 1 ? 1 : thisPlayer.stats.movesThisTurn - moves.filter(m => m.turn === session.game.turn).length
                     mySpecials = thisPlayer.specials.length ? thisPlayer.specials.join(', ') : 'none'
                     hasXray = thisPlayer.specials.includes('X')
-                }
+                // }
 
                 const onMouseDown = (e) => {
                     if (!mouseDown) {
@@ -265,27 +265,27 @@ Specials
     -IM(Instant Moves): Moves are updated instantly for the player who captures it for 1 turn after you have captured it.`
                     alert(fullString)
                 }
-                if (!myColor) {
-                    return (
-                        <div className='play-stage'>
-                            <View 
-                                onStartShouldSetResponder={() => true}
-                                onResponderGrant={(e) => onMouseDown(e.nativeEvent)}
-                                onResponderMove={(e) => onMouseMove(e.nativeEvent)}
-                                onResponderRelease={() => onMouseUp()}
-                                onResponderTerminationRequest={() => true}
-                            >
-                                <Stage {...stageProps} >
-                                    <Map pos={mapPosition} size={pixiSizeScalar(size)} session={session} myTempSocket={playerSpectating} moves={moves} xray={hasXray} dragging={drag} onTileClick={onTileClick} spectating={true} >
-                                        <MapText text={`Turn: ${session.game.turn}/${session.turns}`} x={pixiSizeScalar(10)} y={pixiSizeScalar(10 + offset[1])} bgColor={'rgb(0,0,0)'} fontSize={pixiSizeScalar(22)} evenSmaller={true} />
-                                        <Sprite tap={() => setShowLeaderboard(true)} mouseover={() => setShowLeaderboard(true)} mouseout={() => setShowLeaderboard(true)} interactive={true} scale={{ x: pixiSizeScalar(6) / 100, y: pixiSizeScalar(6) / 100 }} anchor={0.5} x={pixiSizeScalar(30)} y={pixiSizeScalar(80 + offset[1])} image={"https://image.flaticon.com/icons/svg/1152/1152810.svg"} />
-                                        <Leaderboard visible={showLeaderboard} position={[pixiSizeScalar(10), pixiSizeScalar(110 + offset[1])]} session={session} />
-                                    </Map>
-                                </Stage>
-                            </View>
-                        </div>
-                    )
-                }
+                // if (!myColor) {
+                //     return (
+                //         <div className='play-stage'>
+                //             <View 
+                //                 onStartShouldSetResponder={() => true}
+                //                 onResponderGrant={(e) => onMouseDown(e.nativeEvent)}
+                //                 onResponderMove={(e) => onMouseMove(e.nativeEvent)}
+                //                 onResponderRelease={() => onMouseUp()}
+                //                 onResponderTerminationRequest={() => true}
+                //             >
+                //                 <Stage {...stageProps} >
+                //                     <Map pos={mapPosition} size={pixiSizeScalar(size)} session={session} myTempSocket={playerSpectating} moves={moves} xray={hasXray} dragging={drag} onTileClick={onTileClick} spectating={true} >
+                //                         <MapText text={`Turn: ${session.game.turn}/${session.turns}`} x={pixiSizeScalar(10)} y={pixiSizeScalar(10 + offset[1])} bgColor={'rgb(0,0,0)'} fontSize={pixiSizeScalar(22)} evenSmaller={true} />
+                //                         <Sprite tap={() => setShowLeaderboard(true)} mouseover={() => setShowLeaderboard(true)} mouseout={() => setShowLeaderboard(true)} interactive={true} scale={{ x: pixiSizeScalar(6) / 100, y: pixiSizeScalar(6) / 100 }} anchor={0.5} x={pixiSizeScalar(30)} y={pixiSizeScalar(80 + offset[1])} image={"https://image.flaticon.com/icons/svg/1152/1152810.svg"} />
+                //                         <Leaderboard visible={showLeaderboard} position={[pixiSizeScalar(10), pixiSizeScalar(110 + offset[1])]} session={session} />
+                //                     </Map>
+                //                 </Stage>
+                //             </View>
+                //         </div>
+                //     )
+                // }
                 return (
                     <div className='play-stage'>
                         <View 
