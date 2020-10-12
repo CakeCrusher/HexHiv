@@ -81,13 +81,15 @@ const Play = (props) => {
                 if (username.fields.value && username.fields.value !== window.localStorage.getItem('username')) {
                     window.localStorage.setItem('username', username.fields.value)
                 }
+                const unnamed = `unnamed${randNum(0,99)}`
                 if (!username.fields.value) {
-                    username.assignValue(`unnamed${randNum(0,99)}`)
+                    window.localStorage.setItem('username', unnamed)
+                    username.assignValue(unnamed)
                 }
                 socket.emit('joinSession', {
                     gameId: props.id,
                     color: currentColor,
-                    username: username.fields.value
+                    username: username.fields.value ? username.fields.value : unnamed
                 })
             }
         }
@@ -271,6 +273,14 @@ Specials
     -S(Skip): Enables one to move 2 units away from an ally tile for 1 turn after you have captured it.
     -IM(Instant Moves): Moves are updated instantly for the player who captures it for 1 turn after you have captured it.`
                     alert(fullString)
+                }
+                if (!myColor) {
+                    return (
+                        <div style={{textAlign: 'center'}}>
+                            <h3 style={{opacity: 0.8}}>:( Oops something happened</h3>
+                            <h3>To rejoin: refresh the page and press the rejoin button</h3>
+                        </div>
+                    )
                 }
                 // if (!myColor) {
                 //     return (
