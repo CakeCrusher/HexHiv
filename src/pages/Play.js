@@ -227,12 +227,12 @@ const Play = (props) => {
                 let mySpecials
                 let hasXray
 
-                // if (thisPlayer) {
+                if (thisPlayer) {
                     myColor = session.players.find(p => p.id === socket.id).color
                     movesRemaining = turnDone ? 0 : session.game.turn === 1 ? 1 : thisPlayer.stats.movesThisTurn - moves.filter(m => m.turn === session.game.turn).length
                     mySpecials = thisPlayer.specials.length ? thisPlayer.specials.join(', ') : 'none'
                     hasXray = thisPlayer.specials.includes('X')
-                // }
+                }
 
                 const onMouseDown = (e) => {
                     if (!mouseDown) {
