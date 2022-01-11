@@ -1,4 +1,5 @@
 # HexHiv
+### [Play now!](https://hexhiv.com/)
 
 
 
